@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+<h1>
+     CARS
+
+</h1>
+<div>
+    <p>
+        {% if cars %}
+        {% for car in cars %}
+        <p>
+            {{car.name}}
+            <img src="{{car.image}}" height="150px" width="400px" alt="" /></a>
+            {{car.image}}
+        </p>
+        {% endfor %}
+        {% else %}
+        <a href="">No Cars</a>
+        {% endif %}
+    </p>
+</div>
+
+</body>
+</html>
