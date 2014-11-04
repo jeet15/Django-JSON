@@ -29,3 +29,12 @@ class APIView(View, JSONResponseMixin, CarList ):
         context = { 'cars': self.get_list() }
         data = {'html': render_to_string(self.template_name, context) }
         return self.render_to_response(data)
+
+class JqueryView(TemplateView):
+
+    template_name = 'apps/jquery.html'
+
+    def get_context_data(self,**kwargs):
+        context = super(JqueryView, self).get_context_data(**kwargs)
+        context['menu'] = 'jquery'
+        return context
