@@ -28,6 +28,7 @@ class APIView(View, JSONResponseMixin, CarList ):
     def get(self, request, *args, **kwargs):
         context = { 'cars': self.get_list() }
         data = {'html': render_to_string(self.template_name, context) }
+        data['status'] = 1
         return self.render_to_response(data)
 
 class JqueryView(TemplateView):

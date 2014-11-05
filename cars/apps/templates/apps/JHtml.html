@@ -4,9 +4,7 @@
     <title></title>
     <header>HTML Work With Jquery</header>
 </head>
-<script type="text/javascript" src="/jquery/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-
 <script type="text/javascript">
     $(document).ready(function(){
         $("#btn3").click(function(){
@@ -15,12 +13,20 @@
         $("#btn1").click(function(){
             $("#p1").prepend("<i>To the HTML</i>")
         });
+        $("#driver").click(function(event){
+            $.ajax({
+                type:'GET',
+                url:'/get-list/',
+                success:function(response){
+                  console.log(response);
+                  alert(response);
+                  if (1 == response.status) {
+                      $('#load_data').html(response.html);
+                  }
+                }
+            });
+        });
     });
-   $(document).ready(function() {
-      $("#driver").click(function(event){
-          $('#stage').load('/jquery/result.html');
-      });
-   });
 </script>
 
 
@@ -38,6 +44,9 @@
     <p>Click on the button to load result.html file:</p>
    <div id="stage" style="background-color:blue;">
           STAGE
+   </div>
+   <div id="load_data">
+     
    </div>
    <input type="button" id="driver" value="Load Data" />
 
