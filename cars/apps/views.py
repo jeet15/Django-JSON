@@ -38,3 +38,13 @@ class JqueryView(TemplateView):
         context = super(JqueryView, self).get_context_data(**kwargs)
         context['menu'] = 'jquery'
         return context
+
+
+class JhtmlView(TemplateView):
+
+    template_name = 'apps/JHtml.html'
+
+    def get_context_data(self,**kwargs):
+        context = super(JhtmlView, self).get_context_data(**kwargs)
+        context['menu'] = 'jhtml'
+        return context

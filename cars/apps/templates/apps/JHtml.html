@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <header>HTML Work With Jquery</header>
+</head>
+<script type="text/javascript" src="/jquery/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#btn3").click(function(){
+            $("#p4").append("<b>For Jquery</b>")
+        });
+        $("#btn1").click(function(){
+            $("#p1").prepend("<i>To the HTML</i>")
+        });
+    });
+   $(document).ready(function() {
+      $("#driver").click(function(event){
+          $('#stage').load('/jquery/result.html');
+      });
+   });
+</script>
+
+
+
+
+<body>
+<div>
+    <p id="p4">This Is HTML</p>
+    <button id ="btn3">Submit</button>
+    <p id="p1">Welcome</p>
+    <button id="btn1">Click</button>
+
+</div>
+<div>
+    <p>Click on the button to load result.html file:</p>
+   <div id="stage" style="background-color:blue;">
+          STAGE
+   </div>
+   <input type="button" id="driver" value="Load Data" />
+
+</div>
+
+
+</body>
+</html>
