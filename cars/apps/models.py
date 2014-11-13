@@ -9,3 +9,13 @@ class Car(models.Model):
 
     def __unicode__(self):
         return self.name
+
+    def image_info(self):
+        url = "No attachment"
+        if self.image:
+            url = self.image.url.split('/',5)
+            if len(url) > 1:
+                url = '/' + url[5]
+            else:
+                url = "No attachment"
+        return url    

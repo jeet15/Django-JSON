@@ -31,6 +31,19 @@ class APIView(View, JSONResponseMixin, CarList ):
         data['status'] = 1
         return self.render_to_response(data)
 
+class JhtmlView(TemplateView):
+
+    template_name = 'apps/JHtml.html'
+
+    def get_context_data(self,**kwargs):
+        context = super(JhtmlView, self).get_context_data(**kwargs)
+        context['menu'] = 'jhtml'
+        return context
+
+    def post(self, request, *args, **kwargs):
+        data = self.add_user(self.request.POST)
+        return self.render_to_response(data)
+
 class JqueryView(TemplateView):
 
     template_name = 'apps/jquery.html'
@@ -40,12 +53,3 @@ class JqueryView(TemplateView):
         context['menu'] = 'jquery'
         return context
 
-
-class JhtmlView(TemplateView):
-
-    template_name = 'apps/JHtml.html'
-
-    def get_context_data(self,**kwargs):
-        context = super(JhtmlView, self).get_context_data(**kwargs)
-        context['menu'] = 'jhtml'
-        return context

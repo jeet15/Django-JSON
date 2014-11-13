@@ -1,57 +1,19 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
     <title></title>
-    <header>HTML Work With Jquery</header>
+    <header><h1>Car Showroom</h1></header>
 </head>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script type="text/javascript">
-    $(document).ready(function(){
-        $("#btn3").click(function(){
-            $("#p4").append("<b>For Jquery</b>")
-        });
-        $("#btn1").click(function(){
-            $("#p1").prepend("<i>To the HTML</i>")
-        });
-        $("#driver").click(function(event){
-            $.ajax({
-                type:'GET',
-                url:'/get-list/',
-                success:function(response){
-                  console.log(response);
-                  alert(response);
-                  if (1 == response.status) {
-                      $('#load_data').html(response.html);
-                  }
-                }
-            });
-        });
-    });
-</script>
-
-
-
-
+<script type="text/javascript" src="{% static "js/jquery-1.11.1.min.js" %}"></script>
 <body>
-<div>
-    <p id="p4">This Is HTML</p>
-    <button id ="btn3">Submit</button>
-    <p id="p1">Welcome</p>
-    <button id="btn1">Click</button>
-
-</div>
-<div>
-    <p>Click on the button to load result.html file:</p>
-   <div id="stage" style="background-color:blue;">
-          STAGE
-   </div>
+   <input type="button" id="driver" value="All Cars" />
+   <input type="button" id="" value="Add New Car" />
    <div id="load_data">
+        <img src=" ">
      
    </div>
-   <input type="button" id="driver" value="Load Data" />
-
-</div>
-
-
+   
+<script type="text/javascript" src="{% static "js/main.js" %}" ></script>
 </body>
 </html>
