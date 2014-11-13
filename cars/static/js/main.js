@@ -12,13 +12,14 @@ $(document).ready(function(){
         });
     });
 
-    $("#add_form").click(function(){
+    $("#add_car").click(function(event){
+      event.preventDefault();
       $.ajax({
         type:'GET',
-        url:'/add_car/'
+        url:$(this).attr('href'),
         success:function(response){
           console.log(response);
-          alert(response.message);
+          $('#load_data').html(response.html);
         }
       });
     });
