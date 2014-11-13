@@ -11,4 +11,16 @@ $(document).ready(function(){
             }
         });
     });
+
+    $("#add_form").click(function(){
+      $.ajax({
+        type:'GET',
+        url:'/add_car/'
+        success:function(response){
+          console.log(response);
+          alert(response.message);
+        }
+      });
+    });
+
 });

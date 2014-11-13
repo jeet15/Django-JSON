@@ -7,7 +7,7 @@ from django.middleware.csrf import get_token
 #from braces.views import CsrfExemptMixin, JsonRequestResponseMixin
 
 from models import Car
-from utils import CarList
+from utils import CarList, ManageCar
 import json
 
 from libs.jsonresponse import JSONResponseMixin
@@ -43,6 +43,19 @@ class JhtmlView(TemplateView):
     def post(self, request, *args, **kwargs):
         data = self.add_user(self.request.POST)
         return self.render_to_response(data)
+
+class CarView(View, JSONResponseMixin , ManageCar):
+    template_name = 'apps/add.html'
+
+    def get(self, request, *args, **kwargs):
+        data = {}
+        form_car = self.car_form()
+        context = {'form' : form_car, 'csrf_token_value': get_token(self.request)}
+        data['html'] = render_to_string(self.template_name, context)
+        return self.render_to_response(data)
+
+ 
+
 
 class JqueryView(TemplateView):
 

@@ -9,5 +9,9 @@ class CarList():
         return Car.objects.all().order_by('name')
 
 
-#class ManageCar(object):
+class ManageCar(object):
+    def car_form(self):
+        form = CarForm()
+        return form
+        
     
