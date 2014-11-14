@@ -24,4 +24,17 @@ $(document).ready(function(){
       });
     });
 
+    $("#cars").submit(function(){
+      $.ajax({
+        type:'POST',
+        url:'/add-car/',
+        success:function(response){
+          console.log(response);
+          alert("data entered");
+          $('#load_data').html(response.html);
+        }
+
+      });
+    });
+
 });

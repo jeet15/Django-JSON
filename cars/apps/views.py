@@ -31,7 +31,7 @@ class APIView(View, JSONResponseMixin, CarList ):
         data['status'] = 1
         return self.render_to_response(data)
 
-class JhtmlView(TemplateView):
+class JhtmlView(TemplateView, ManageCar):
 
     template_name = 'apps/JHtml.html'
 
@@ -40,9 +40,6 @@ class JhtmlView(TemplateView):
         context['menu'] = 'jhtml'
         return context
 
-    def post(self, request, *args, **kwargs):
-        data = self.add_user(self.request.POST)
-        return self.render_to_response(data)
 
 class CarView(View, JSONResponseMixin , ManageCar):
     template_name = 'apps/add.html'
@@ -53,6 +50,19 @@ class CarView(View, JSONResponseMixin , ManageCar):
         context = {'form' : form_car, 'csrf_token_value': get_token(self.request)}
         data['html'] = render_to_string(self.template_name, context)
         return self.render_to_response(data)
+
+    def post(self, request, *args, **kwargs):
+        import pdb; pdb.set_trace
+        data = {}
+        dt = self.save_car(self.request)
+        if dt:
+            data['status'] = 1
+            data['message'] = 'Car Added Successfully.'
+        else:
+            data['status'] = 0
+            data['message'] = 'Data is missing'
+        return self.render_to_response(data)
+  
 
  
 
