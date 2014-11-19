@@ -71,7 +71,7 @@ class ValidationView(TemplateView):
 class UserView(View, JSONResponseMixin, ManageUser):
     template_name = 'apps/user.html'
 
-    def get_context_data(self, **kwargs):
+    def get(self, request, *args, **kwargs):
         data = {}
         user_form = self.get_form()
         context = {'form' : user_form, 'csrf_token_value':get_token(self.request)}
