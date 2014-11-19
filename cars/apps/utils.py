@@ -24,6 +24,6 @@ class ManageUser(object):
     def save_form(self, request):
         form = UserForm(request.POST)
         if form.is_valid():
-            return form.save(request)
+            return form.save()
         else:
             return False
