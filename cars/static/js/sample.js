@@ -45,25 +45,28 @@ $(document).ready(function(){
         success:function(response){
           console.log(response);
           $('#load_form').html(response.html);
+          /* form validation code */
+          $("#user_form").validate({
+            rules:{
+              name:{
+                required:true
+              },
+              email:{
+                required:true,
+                email: true
+              }
+            },
+            message:{
+              name :{
+                required: "name is required field"
+              },
+              email: {
+                required: "Email is required field",
+                email: "Please enter valid email id"
+              }
+            }
+          });
         }
       });
     });
-
-    /* form validation code */
-    
-    $("#user_form").validate({
-      rules:{
-        name:{
-          required:true
-        },
-        email:{
-          required:true
-        }
-      },
-      message:{
-        name :"required field",
-        email:"required field"
-      }
-    });    
-
 });
