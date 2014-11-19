@@ -78,6 +78,17 @@ class UserView(View, JSONResponseMixin, ManageUser):
         data['html'] = render_to_string(self.template_name, context)
         return self.render_to_response(data)
 
+    def post(self, request, *args, **kwargs):
+        data = {}
+        dt = self.save_form(self.request)
+        if dt:
+            data['status'] = 1
+            data['message'] = "user added succesfully..."
+        else:
+            data['status'] = 0
+            data['message'] = "data s missing"
+        return self.render_to_response(data)
+
 class JqueryView(TemplateView):
 
     template_name = 'apps/jquery.html'

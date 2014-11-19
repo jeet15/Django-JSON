@@ -1,6 +1,7 @@
 <div>
     <form id ="user_form" method="post" action="" >
         <div style='display:none'><input type='hidden' name='csrfmiddlewaretoken' value='{{ csrf_token_value }}'/></div>
+        <label id = "form_error" ></label>
         {# Include the hidden fields #}
         {% for hidden in form.hidden_fields %}
             {{ hidden }}

@@ -64,6 +64,21 @@ $(document).ready(function(){
           message:{
             name :"required field",
             email:"required field"
+            },
+            submitHandler:function(form){
+                $.ajax({
+                    url:form.action,
+                    type:form.method,
+                    data:$(form).serialize(),
+                    success:function(response){
+                        if (0 == response.status) {
+                            $("#form_error").text(response.message).show();
+                        }
+                        else{
+                            alert(response.message);
+                        }
+                    }
+                });
             }
         });    
     }
