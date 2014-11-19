@@ -45,25 +45,26 @@ $(document).ready(function(){
         success:function(response){
           console.log(response);
           $('#load_form').html(response.html);
+          userBind();
         }
       });
     });
 
     /* form validation code */
-    
-    $("#user_form").validate({
-      rules:{
-        name:{
-          required:true
-        },
-        email:{
-          required:true
-        }
-      },
-      message:{
-        name :"required field",
-        email:"required field"
-      }
-    });    
-
+    function userBind(){
+        $("#user_form").validate({
+          rules:{
+            name:{
+              required:true
+            },
+            email:{
+            required:true
+            }
+          },
+          message:{
+            name :"required field",
+            email:"required field"
+            }
+        });    
+    }
 });
