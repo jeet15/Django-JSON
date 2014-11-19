@@ -24,34 +24,19 @@ $(document).ready(function(){
       });
     });
 
-    function CarEntry(){
-      $('#cars').validate({
-        rules:{
-          name:{required:true},
-          image:{required:true}
+    $("#cars").validate({
+      rules:{
+        name:{
+          required:true
         },
-        message:{
-          name:{required:'*'},
-          image:{required:'*'}
-        },
-
-        submitHandler:function(form){
-          $.ajax({
-            url:form.action,
-            type:form.method,
-            data:$(form).serialize(),
-            success:function(response){
-              if (response.status == 0) {
-                $('#form_error').text(response.message).show(),
-              }
-              else{
-                alert(response.message);
-              }
-            }
-          });
+        image:{
+          required:true
         }
-      });
-    }
-
+      },
+      message:{
+        name :"required field",
+        image:"required field"
+      }
+    });
 
 });

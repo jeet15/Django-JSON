@@ -19,3 +19,7 @@ class Car(models.Model):
             else:
                 url = "No attachment"
         return url    
+
+class User(models.Model):
+    name = models.CharField(max_length=120)
+    email = models.CharField("Email", max_length=32)

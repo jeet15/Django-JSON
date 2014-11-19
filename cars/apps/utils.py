@@ -1,7 +1,7 @@
 from django.core.urlresolvers import reverse
 from models import Car
 
-from forms import CarForm
+from forms import CarForm, UserForm
 
 
 class CarList():
@@ -14,13 +14,10 @@ class ManageCar(object):
         form = CarForm()
         return form
 
-    def save_car(self, request):
-        import pdb;pdb.set_trace
-        form = CarForm(request.POST)
-        if form.is_valid():
-            return form.save(request)
-        else:
-            return False
 
-        
+
+class ManageUser(object):
+    def get_form(self):
+        form = UserForm()
+        return form
     

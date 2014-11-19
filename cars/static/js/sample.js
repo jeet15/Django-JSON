@@ -10,7 +10,7 @@ $(document).ready(function(){
     $("#btn1").click(function(){
         alert("This is the link"+ $("#ht1").attr("href"))
     });
-    
+
     $("#btn2").click(function(){
         alert("This is the value "+ $("#txt").val())
     });
@@ -19,5 +19,51 @@ $(document).ready(function(){
         event.preventDefault();
         alert("This is the preventDefault")
     });
+
+    $("#form").validate({
+        rules:{
+            name:{
+                required:true
+            },
+            email:{
+                required:true
+            }
+        },
+        message:{
+            name:"required field",
+            email:"required field"
+        }
+    });
+
+    /* form fetching using ajax */
+
+    $("#add_user").click(function(event){
+      event.preventDefault();
+      $.ajax({
+        type:'GET',
+        url:$(this).attr('href'),
+        success:function(response){
+          console.log(response);
+          $('#load_form').html(response.html);
+        }
+      });
+    });
+
+    /* form validation code */
+    
+    $("#user_form").validate({
+      rules:{
+        name:{
+          required:true
+        },
+        email:{
+          required:true
+        }
+      },
+      message:{
+        name :"required field",
+        email:"required field"
+      }
+    });    
 
 });
