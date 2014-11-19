@@ -63,7 +63,14 @@ class CarView(View, JSONResponseMixin , ManageCar):
             data['message'] = 'Data is missing'
         return self.render_to_response(data)
   
+class SampleView(TemplateView):
 
+    template_name = 'apps/sample.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(SampleView, self). get_context_data(**kwargs)
+        context['menu'] = 'sample'
+        return context
  
 
 
