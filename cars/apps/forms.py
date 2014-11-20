@@ -12,6 +12,7 @@ class CarForm(forms.Form):
         return True
 
 class UserForm(forms.Form):
+    user_id = forms.CharField(widget= forms.HiddenInput(), required= False)
     name = forms.CharField(label = 'Name' , widget= forms.TextInput())
     email = forms.CharField(label='Email', widget=forms.EmailInput())
 

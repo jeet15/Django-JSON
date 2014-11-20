@@ -68,19 +68,76 @@ $(document).ready(function(){
             submitHandler:function(form){
                 $.ajax({
                     url:form.action,
-                    type:form.method,
+                    type:'POST',
                     data:$(form).serialize(),
                     success:function(response){
                         if (0 == response.status) {
                             $("#form_error").text(response.message).show();
                         }
                         else{
+                            $("#id_name").val('');
+                            $("#id_email").val('');
                             alert(response.message);
+
                         }
-                    }
+                    },
                 });
             }
         });    
+    }
+
+    $("#users").click(function(event){
+        $.ajax({
+            type:'GET',
+            url:'/all-user/',
+            success:function(response){
+              console.log(response);
+              if (1 == response.status) {
+                $('#load_form').html(response.html);
+                deleteUser()
+              }
+            }
+        });
+    });
+
+    function editUser(){
+
+    $("#edit-user").validate({
+        rules:{
+            name:{
+                required:true
+            },
+            email:{
+                required:true
+            }
+        },
+        message:{
+            name:"required field",
+            email:"required field"
+        }
+    });
+    }
+
+    function deleteUser(){
+
+    $("#delete-user").click(function(e) {
+      e.preventDefault();
+      var userId = $this.data('user-id');
+        $.ajax({
+          url: '/delete-user/',
+          type: 'get',
+          data: {user_id: userId},
+          success: function(response) {
+            console.log(response);
+            if (response.status == 1) {
+              alert("user is deleted");
+            }
+            else{
+                alert("data is not available");
+            }
+          }
+        });
+    });
     }
 
 });

@@ -20,23 +20,24 @@ $(document).ready(function(){
         success:function(response){
           console.log(response);
           $('#load_data').html(response.html);
+          $("#cars").validate({
+            rules:{
+              name:{
+                  required:true
+                },
+              image:{
+                  required:true
+                }
+            },
+              message:{
+                name :"required field",
+                image:"required field"
+      }
+    });          
         }
       });
     });
 
-    $("#cars").validate({
-      rules:{
-        name:{
-          required:true
-        },
-        image:{
-          required:true
-        }
-      },
-      message:{
-        name :"required field",
-        image:"required field"
-      }
-    });
+
 
 });

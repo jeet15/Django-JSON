@@ -1,0 +1,17 @@
+<h2>All Users</h2>
+<div>
+    <p id="user-list">
+        {% if users %}
+        {% for user in users %}
+        <p>
+            {{user.name}}
+            {{user.email}}
+            <a href="{% url 'edit-user' %}" id = "edit">edit</a>
+            <a href="{% url 'delete-user' %}" id = "delete_user" user-id = "{{user.id}}" >delete</a>
+        </p>
+        {% endfor %}
+        {% else %}
+        <a href="">No User Added</a>
+        {% endif %}
+    </p>
+</div>

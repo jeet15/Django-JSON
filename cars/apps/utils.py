@@ -1,5 +1,5 @@
 from django.core.urlresolvers import reverse
-from models import Car
+from models import Car, User
 
 from forms import CarForm, UserForm
 
@@ -27,3 +27,37 @@ class ManageUser(object):
             return form.save()
         else:
             return False
+
+    def get_list(self):
+        return User.objects.all().order_by('name')
+
+    def edit_user (self, user_id):
+        data = {}
+        info = User.objects.filter(id = user_id)
+        if info:
+            info = info[0]
+            form = UserForm({
+                'user_id': info.user_id,
+                'name':info.name,
+                'email': info.email,
+                })
+            data['status'] = 1
+            data['form'] = form
+        else:
+            data['status'] = 0
+            data['message'] = 'User does not exist.'
+        return data
+        
+    def delete_user (self, user_id):
+        data = {}
+        user = User.objects.filter(id = user_id)
+        if user:
+            user.delete()
+            data['status'] = 1
+            data['message'] = 'User has been deleted successfully'
+        else:
+            data['status'] = 0
+            data['message'] = 'User does not exist. Please try again'
+        return data
+
+        

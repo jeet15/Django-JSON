@@ -98,3 +98,33 @@ class JqueryView(TemplateView):
         context['menu'] = 'jquery'
         return context
 
+class UserListView(View, JSONResponseMixin, ManageUser):
+    template_name = 'apps/alluser.html'
+
+    def get(self, request, *args, **kwargs):
+        context = { 'users': self.get_list() }
+        data = {'html': render_to_string(self.template_name, context) }
+        data['status'] = 1
+        return self.render_to_response(data)
+
+class EditView(View, JSONResponseMixin, ManageUser):
+
+    template_name = 'apps/edit.html'
+
+    def get(self, request, *args, **kwargs):
+        data = {}
+        user_id = self.request.GET.get('user_id')
+        edit_form = self.edit_user(user_id)
+        context = {'form' : edit_form, 'csrf_token_value': get_token(self.request)}
+        data['status'] = 1
+        data['html'] = render_to_string(self.template_name, context)
+        return self.render_to_response(data)  
+              
+class DeleteView(View, JSONResponseMixin, ManageUser):
+    '''
+    @summary: Delete User
+    '''
+    def get(self, request, *args, **kwargs):
+        user_id = self.request.GET.get('user_id')
+        data = self.delete_user(user_id)
+        return self.render_to_response(data)
