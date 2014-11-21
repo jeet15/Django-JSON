@@ -47,7 +47,7 @@ class CarView(View, JSONResponseMixin , ManageCar):
     def get(self, request, *args, **kwargs):
         data = {}
         form_car = self.car_form()
-        context = {'form' : form_car, 'csrf_token_value': get_token(self.request)}
+        context = {'action':'add','form' : form_car, 'csrf_token_value': get_token(self.request)}
         data['html'] = render_to_string(self.template_name, context)
         return self.render_to_response(data)
 
@@ -109,13 +109,13 @@ class UserListView(View, JSONResponseMixin, ManageUser):
 
 class EditView(View, JSONResponseMixin, ManageUser):
 
-    template_name = 'apps/edit.html'
+    template_name = 'apps/add.html'
 
     def get(self, request, *args, **kwargs):
         data = {}
         user_id = self.request.GET.get('user_id')
         edit_form = self.edit_user(user_id)
-        context = {'form' : edit_form, 'csrf_token_value': get_token(self.request)}
+        context = {'action':'edit','form' : edit_form, 'csrf_token_value': get_token(self.request)}
         data['status'] = 1
         data['html'] = render_to_string(self.template_name, context)
         return self.render_to_response(data)  

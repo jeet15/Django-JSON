@@ -1,5 +1,5 @@
-<div>
-    <form method="post" action="" id="cars">
+<div class="form-div">
+    <form method="post" action="{% if action == "add" %}{% url 'add-user' %}{% else %}{% url 'edit-user' %}{% endif %}" id="{{ action }}_user_form">
         <div style='display:none'><input type='hidden' name='csrfmiddlewaretoken' value='{{ csrf_token_value }}'/></div>
         <label id="form_error" class="error"></label>
         {# Include the hidden fields #}
@@ -14,10 +14,9 @@
             <label class="error" id="{{ f.id_for_label }}">{% if f.errors.as_text %}*{% endif %}</label>
         </p>
         {% endfor %}
-        <p >
+        <p class="form-btn">
             <input type="submit" value="Submit"/>
+            <a href="#" id="{{ action }}_user_cancel">Cancel</a>
         </p>
-
-        
     </form>
 </div>

@@ -95,6 +95,21 @@ $(document).ready(function(){
               if (1 == response.status) {
                 $('#load_form').html(response.html);
                 deleteUser();
+                    $(".edit_user").click(function(e){
+                        e.preventDefault();
+                    var $this = $(this), userId = $this.data('user-id');
+                    alert("the id is "+userId)
+                    $.ajax({
+                        type:'GET',
+                        url:'/edit-user/',
+                        cache:false,
+                        success:function(response){
+                        console.log(response);
+                        $('#load_form').html(response.html);
+                        }
+                    });
+
+    });
               }
             }
         });
