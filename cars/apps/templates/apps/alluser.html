@@ -6,8 +6,8 @@
         <p>
             {{user.name}}
             {{user.email}}
-            <a href="{% url 'edit-user' %}" id = "edit">edit</a>
-            <a href="{% url 'delete-user' %}" id = "delete_user" user-id = "{{user.id}}" >delete</a>
+            <a href="{% url 'edit-user' %}" class="edit_user" data-user-id="{{user.id}}">edit</a>
+            <a href="{% url 'delete-user' %}" class="delete_user" data-user-id = "{{user.id}}" >delete</a>
         </p>
         {% endfor %}
         {% else %}

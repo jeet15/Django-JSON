@@ -94,7 +94,7 @@ $(document).ready(function(){
               console.log(response);
               if (1 == response.status) {
                 $('#load_form').html(response.html);
-                deleteUser()
+                deleteUser();
               }
             }
         });
@@ -119,25 +119,24 @@ $(document).ready(function(){
     }
 
     function deleteUser(){
-
-    $("#delete-user").click(function(e) {
-      e.preventDefault();
-      var userId = $this.data('user-id');
-        $.ajax({
-          url: '/delete-user/',
-          type: 'get',
-          data: {user_id: userId},
-          success: function(response) {
-            console.log(response);
-            if (response.status == 1) {
-              alert("user is deleted");
-            }
-            else{
-                alert("data is not available");
-            }
-          }
+        $(".delete_user").click(function(e) {
+          e.preventDefault();
+          var $this = $(this), userId = $this.data('user-id');
+            $.ajax({
+              url: '/delete-user/',
+              type: 'get',
+              data: {user_id: userId},
+              success: function(response) {
+                console.log(response);
+                if (response.status == 1) {
+                  alert("user is deleted");
+                }
+                else{
+                    alert("data is not available");
+                }
+              }
+            });
         });
-    });
     }
 
 });
